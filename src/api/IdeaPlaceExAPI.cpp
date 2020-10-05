@@ -77,5 +77,6 @@ void initIdeaPlaceExAPI(py::module &m)
         .def("runtimeDetailedPlacement", &PROJECT_NAMESPACE::IdeaPlaceEx::runtimeDetailedPlacement, "Get the time used for detailed placement")
         .def("addHorConstr", &PROJECT_NAMESPACE::IdeaPlaceEx::addHorConstr, "Add a horizontal constraint")
         .def("addVerConstr", &PROJECT_NAMESPACE::IdeaPlaceEx::addVerConstr, "Add a vertical constraint")
+        .def("hpwl", &PROJECT_NAMESPACE::IdeaPlaceEx::hpwl, "Half perimeter wirelength")
         ;
 }

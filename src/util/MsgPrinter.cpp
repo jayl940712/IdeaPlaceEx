@@ -8,7 +8,7 @@
 PROJECT_NAMESPACE_BEGIN
 
 std::time_t MsgPrinter::_startTime = std::time(nullptr);
-FILE* MsgPrinter::_screenOutStream = stderr;
+FILE* MsgPrinter::_screenOutStream = nullptr;
 FILE* MsgPrinter::_logOutStream = nullptr;
 std::string MsgPrinter::_logFileName = "";
 
