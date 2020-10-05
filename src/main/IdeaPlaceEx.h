@@ -366,7 +366,7 @@ class IdeaPlaceEx
             return WATCH_LOOK_RECORD_TIME("detailedPlacement");
         }
 
-        LocType hpwl() { return _db.hpwlWithVirtualPins(); }
+        LocType hpwl() { return _db.hpwlWithVitualPins(); }
     protected:
         Database _db; ///< The placement engine database 
 };
