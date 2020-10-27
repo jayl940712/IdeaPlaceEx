@@ -255,6 +255,11 @@ class CGLegalizer
         explicit CGLegalizer(Database &db) : _db(db) {}
         /// @brief legalize the design
         bool legalize();
+        /// @brief return a copy of vertical constraint edges. 
+        std::set<ConstraintEdge> vConstraint() { return _vConstraints.edges(); }
+        /// @brief return a copy of horizontal constraint edges. 
+        std::set<ConstraintEdge> hConstraint() { return _hConstraints.edges(); }
+        /// @brief legalize the design with existing constraints.
     private:
         /// @brief Generate the constraints (not optimal in number of constraints). Based on sweeping algorithm
         void generateConstraints();

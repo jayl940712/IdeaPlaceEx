@@ -79,7 +79,7 @@ void ProximityMgr::restore()
         for(idx += 1; idx < _dummyCells.size(); ++idx)
         {
             if (_dummyCells.at(idx).cellIdx != cellIdx) { idx -=1; break; }
-            Assert(last + 1 == _dummyCells.at(idx).pinIdx);
+            // Assert(last + 1 == _dummyCells.at(idx).pinIdx);
             last = _dummyCells[idx].pinIdx;
         }
         _db.cell(cellIdx).pins().erase(_db.cell(cellIdx).pins().begin() + last, _db.cell(cellIdx).pins().end());

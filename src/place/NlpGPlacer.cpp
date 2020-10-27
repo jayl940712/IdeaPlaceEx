@@ -450,6 +450,7 @@ void NlpGPlacerBase<nlp_settings>::initOperators()
     {
         IndexType sCellIdx = constr.llCellIdx();
         IndexType tCellIdx = constr.urCellIdx();
+        IndexType rel_size = _db.relationalConstraints().size();
 
         XY<LocType> sOffset, tOffset;
 
@@ -477,7 +478,7 @@ void NlpGPlacerBase<nlp_settings>::initOperators()
                     getLambdaFuncCosine);
             _verOps.back().setGetVarFunc(getVarFunc);
             _verOps.back().setGetAlphaFunc(getAlphaFunc);
-            _verOps.back().setWeight(_db.parameters().defaultRelationalConstraintWeight() * constr.weight());
+            _verOps.back().setWeight(_db.parameters().defaultRelationalConstraintWeight() * constr.weight() / rel_size);
         }
         else if (constr.relationalType() == Orient2DType::HORIZONTAL) 
         {
@@ -486,7 +487,7 @@ void NlpGPlacerBase<nlp_settings>::initOperators()
                     getLambdaFuncCosine);
             _horOps.back().setGetVarFunc(getVarFunc);
             _horOps.back().setGetAlphaFunc(getAlphaFunc);
-            _horOps.back().setWeight(_db.parameters().defaultRelationalConstraintWeight() * constr.weight());
+            _horOps.back().setWeight(_db.parameters().defaultRelationalConstraintWeight() * constr.weight() / rel_size);
         }
         else
         {

@@ -8,6 +8,7 @@
 #ifndef IDEAPLACE_IDEAPLACEEX_H_
 #define IDEAPLACE_IDEAPLACEEX_H_
 
+#include <string>
 #include "db/Database.h"
 /* Solver */
 #include "place/CGLegalizer.h"
@@ -29,7 +30,8 @@ class IdeaPlaceEx
         bool parseFileBased(int argc, char** argv);
         /// @brief run the placement algorithm
         /// @return whether the placement is successful
-        LocType solve(LocType gridSize = -1);
+        LocType solve(LocType gridSize = -1, bool writeConst=false, std::string filename="");
+        void writeConstraint(CGLegalizer & legalizer, std::string fileName="");
         /// @brief the file-based output
         /// @param the system arguments
         /// @return if the writing is successful
@@ -367,6 +369,7 @@ class IdeaPlaceEx
         }
 
         LocType hpwl() { return _db.hpwlWithVitualPins(); }
+
     protected:
         Database _db; ///< The placement engine database 
 };

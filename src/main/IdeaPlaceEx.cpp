@@ -141,7 +141,29 @@ bool IdeaPlaceEx::parseFileBased(int argc, char **argv)
     return true;
 }
 
-LocType IdeaPlaceEx::solve(LocType gridStep)
+void IdeaPlaceEx::writeConstraint(CGLegalizer & legalizer, std::string fileName)
+{
+    std::ofstream file(fileName+".h");
+    if (file.is_open())
+    {
+        for (auto edge : legalizer.hConstraint())
+        {
+            file << edge.toStr() << std::endl;
+        }
+        file.close();
+    }
+    std::ofstream file2(fileName+".v");
+    if (file2.is_open())
+    {
+        for (auto edge : legalizer.vConstraint())
+        {
+            file2 << edge.toStr() << std::endl;
+        }
+        file2.close();
+    }
+}
+
+LocType IdeaPlaceEx::solve(LocType gridStep, bool writeConst, std::string fileName)
 {
     auto stopWatch = WATCH_CREATE_NEW("IdeaPlaceEx");
     stopWatch->start();
@@ -246,6 +268,10 @@ LocType IdeaPlaceEx::solve(LocType gridStep)
 #endif
 
     stopWatch->stop();
+
+    if (writeConst)
+        writeConstraint(legalizer, fileName);
+
 
     return symAxis;
 }
